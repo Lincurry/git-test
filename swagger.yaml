@@ -1,0 +1,3279 @@
+swagger: '2.0'
+info:
+  description: 朗翼 ND/TD 系列产品 HTTP SDK
+  title: 朗翼 ND/TD系列产品 HTTP SDK
+  contact: {}
+  version: 1.5.1 20211022
+basePath: /api/v1
+host: 127.0.0.1:20021
+schemes:
+  - http
+paths:
+  /dev/alarmConfig:
+    get:
+      description: 查询告警配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 告警-告警配置
+      summary: 查询告警配置
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.AlarmConfigs'
+    post:
+      description: 配置告警参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 告警-告警配置
+      summary: 配置告警参数
+      parameters:
+        - description: AlarmConfigsSet
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.AlarmConfigsSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/color:
+    get:
+      description: >-
+        调色板查询 参数映射 Ironbow:0
+        rainbow:1,whitehot:2,blackhot:3,globow:4,ironbowAlt1:5,ironbowAlt2:6,sepia:7,colour1:8,colour2:9,icefire:10,rain:11,redhot:12,greenhot:13,greyred:14,lava:15,instalert:16,arctic:17
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-调色板
+      summary: 调色板查询
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+    post:
+      description: >-
+        调色板配置  参数映射 Ironbow:0
+        rainbow:1,whitehot:2,blackhot:3,globow:4,ironbowAlt1:5,ironbowAlt2:6,sepia:7,colour1:8,colour2:9,icefire:10,rain:11,redhot:12,greenhot:13,greyred:14,lava:15,instalert:16,arctic:17
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-调色板
+      summary: 调色板配置
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.ColorModeSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/factoryRestore:
+    post:
+      description: 恢复出厂配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-恢复出厂配置
+      summary: 恢复出厂配置
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/flip:
+    get:
+      description: 查询图像镜像配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-镜像
+      summary: 查询图像镜像配置
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.Flip'
+    post:
+      description: 图像镜像配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-镜像
+      summary: 图像镜像配置
+      parameters:
+        - description: 设备IP
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.FlipSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/ftp:
+    get:
+      description: 查询ftp配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - ftp-ftp配置
+      summary: 查询ftp配置
+      parameters:
+        - type: integer
+          description: 通道号0或1
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.FtpConfig'
+    post:
+      description: 配置ftp
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - ftp-ftp配置
+      summary: 配置ftp
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SetFtpConfig'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/fullFrameTemp/init:
+    post:
+      description: 初始化全幅问度查询
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-全幅温度
+      summary: 初始化全幅问度查询
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/fullFrameTemp/query:
+    get:
+      description: 查询全幅温度
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-全幅温度
+      summary: 查询全幅温度
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: number
+  /dev/fullFrameTemp/stop:
+    delete:
+      description: 停止全幅问度查询
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-全幅温度
+      summary: 停止全幅问度查询
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/fuse:
+    get:
+      description: 查询图像融合配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-图像融合
+      summary: 查询图像融合配置
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.FuseVo'
+    post:
+      description: 图像融合配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-图像融合
+      summary: 图像融合配置
+      parameters:
+        - description: fuse
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.FuseSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/gainMode:
+    get:
+      description: 查询测温增益参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-增益模式配置
+      summary: 查询测温增益参数
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.GainModeVo'
+    post:
+      description: 设置增益模式
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-增益模式配置
+      summary: 设置增益模式
+      parameters:
+        - description: ' '
+          name: dev
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.GainModeSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/ir2viOsdConfig:
+    get:
+      description: 查询可见光叠加测温OSD配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-可见光视频叠加测温OSD配置
+      summary: 查询可见光叠加测温OSD配置
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.Ir2ViOsdVo'
+    post:
+      description: 配置可见光测温OSD
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-可见光视频叠加测温OSD配置
+      summary: 配置可见光测温OSD
+      parameters:
+        - description: config
+          name: irosd
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.Ir2ViOsdSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/irOsdConfig:
+    get:
+      description: 查询红外OSD配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-红外视频OSD配置
+      summary: 查询红外OSD配置
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.IrOsdVo'
+    post:
+      description: 配置红外OSD
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-红外视频OSD配置
+      summary: 配置红外OSD
+      parameters:
+        - description: config
+          name: irosd
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.IrOsdSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/msg/beginRecv:
+    post:
+      description: 开始接受告警
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 告警-告警信息推送
+      summary: 接收告警信息
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/msg/reportServer:
+    post:
+      description: >-
+        Use this API to set the server info ,sdk will report  message  to this
+        server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 告警-告警信息推送
+      summary: SetUploadServer
+      parameters:
+        - description: tp
+          name: UploadServerVo
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.UploadServerVo'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/msg/stopRecv:
+    post:
+      description: 开始接受告警
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 告警-告警信息推送
+      summary: 接收告警信息
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/network:
+    get:
+      description: 网络配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-网络配置
+      summary: 网络配置
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+    post:
+      description: 网络参数配置，重启后生效
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-网络配置
+      summary: 网络参数配置
+      parameters:
+        - description: wp
+          name: wp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.WholeParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/ntp:
+    get:
+      description: 查询NTP配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - NTP-NTP配置
+      summary: 查询NTP配置
+      parameters:
+        - type: integer
+          description: 通道号0或1
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.NtpConfig'
+    post:
+      description: 配置NTP
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - NTP-NTP配置
+      summary: 配置NTP
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SetNtpConfig'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/osd:
+    get:
+      description: 查询设备 OSD
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-OSD配置
+      summary: 查询设备OSD
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.ChanOsd'
+    post:
+      description: 配置设备 OSD
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-OSD配置
+      summary: 配置设备 OSD
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.ChanOsdSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/ptz:
+    post:
+      description: ptz
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - ptz
+      summary: ptz
+      parameters:
+        - description: tp
+          name: tp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.PtzOp'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/queryDevTime:
+    get:
+      description: 查询设备时间
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-设备时间
+      summary: 查询设备时间
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.TimeParam'
+  /dev/queryTempValue:
+    get:
+      description: 查询温度数据
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-温度数据
+      summary: 查询温度数据
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.AllTempValue'
+  /dev/reboot:
+    post:
+      description: 重启设备
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-重启
+      summary: 重启设备
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/scheduleCap:
+    get:
+      description: 查询定时抓拍设置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 定时抓拍
+      summary: 查询定时抓拍设置
+      parameters:
+        - type: integer
+          description: channel number
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.TimerCap'
+    post:
+      description: 配置定时抓拍
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 定时抓拍
+      summary: 配置定时抓拍
+      parameters:
+        - description: config
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SetTimerCap'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/searchDev:
+    get:
+      description: 搜索设备
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-搜索设备
+      summary: 搜索设备
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/api.NetInfo'
+  /dev/setDevTime:
+    post:
+      description: 设置设备时间
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-设备时间
+      summary: 设置设备时间
+      parameters:
+        - description: tp
+          name: tp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.TimeParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/shieldArea:
+    get:
+      description: 查询测温屏蔽区域
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-屏蔽测温区域配置
+      summary: 查询测温屏蔽区域
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/api.Shields'
+    post:
+      description: 配置测温屏蔽区域
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-屏蔽测温区域配置
+      summary: 配置测温屏蔽区域
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.ShieldsSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/shutter:
+    post:
+      description: 操作快门
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 设备-操作快门
+      summary: 操作快门
+      parameters:
+        - type: integer
+          description: 通道
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/smartAnalysisCordon:
+    get:
+      description: 查询智能分析警戒线参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-警戒线
+      summary: 查询智能分析警戒线参数
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.SmartAnalysisCordonParam'
+    post:
+      description: 配置智能分析警戒线参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-警戒线
+      summary: 配置智能分析警戒线参数
+      parameters:
+        - description: SmartAnalysisCordonParamSet
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SmartAnalysisCordonParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/smartAnalysisEnable:
+    get:
+      description: 查询是否启用智能分析
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-使能
+      summary: 查询是否启用智能分析
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    type: boolean
+    post:
+      description: 配置是否启用智能分析
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-使能
+      summary: 配置是否启用智能分析
+      parameters:
+        - description: wp
+          name: wp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SmartAnalysisEnableSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/smartAnalysisGoodsLeft:
+    get:
+      description: 查询智能分析物品遗留 for ND20 only
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-物品遗留 for ND20 only
+      summary: 查询智能分析物品遗留 for ND20 only
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: ' 通道号0或1'
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.SmartAnalysisRegionParam'
+    post:
+      description: 配置智能分析物品遗留 for ND20 only
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-物品遗留 for ND20 only
+      summary: 配置智能分析物品遗留 for ND20 only
+      parameters:
+        - description: sp
+          name: sp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SmartAnalysisGoodsParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/smartAnalysisRegion:
+    get:
+      description: 查询智能分析区域参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-区域
+      summary: 查询智能分析区域参数
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: ' 通道号0或1'
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: 方向参数，in进入，out出
+          name: direction
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.SmartAnalysisRegionParam'
+    post:
+      description: 配置智能分析区域参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-区域
+      summary: 配置智能分析区域参数
+      parameters:
+        - description: SmartAnalysisRegionParamSet
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SmartAnalysisRegionParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/smartAnalysisShield:
+    get:
+      description: 查询智能分析区域屏蔽参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-区域屏蔽
+      summary: 查询智能分析区域屏蔽参数
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: ' 通道号0或1'
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.SmartAnalysisShieldConfig'
+    post:
+      description: 配置智能分析区域参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 智能分析-区域屏蔽
+      summary: 配置智能分析区域参数
+      parameters:
+        - description: SmartAnalysisShieldConfigSet
+          name: ta
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SmartAnalysisShieldConfigSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/snapPic:
+    post:
+      description: '抓拍,data 为base64的图片数据'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 图像-抓拍
+      summary: 抓拍
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/tempArea:
+    get:
+      description: 查询测温区域配置
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-测温区域配置
+      summary: 查询测温区域配置
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/definitions/api.AreaConfigVo'
+    post:
+      description: 配置测温区域
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-测温区域配置
+      summary: 配置测温区域
+      parameters:
+        - description: ' config'
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.AreaConfigSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/tempOsd:
+    get:
+      description: 查询测温温度叠加配置选项 for ND20 only
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-温度叠加配置选项 for ND20 only
+      summary: 查询测温温度叠加配置选项 for ND20 only
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: ' 通道号0或1'
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.TempOsd'
+    post:
+      description: 配置测温温度叠加配置选项 for ND20 only
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - OSD-温度叠加配置选项 for ND20 only
+      summary: 配置测温温度叠加配置选项 for ND20 only
+      parameters:
+        - description: ' ts'
+          name: ts
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.TempOsdSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/tempParam:
+    get:
+      description: 查询测温参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-测温参数配置
+      summary: 查询测温参数
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.TempParamVo'
+    post:
+      description: 设置测温参数
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 测温-测温参数配置
+      summary: 设置测温参数
+      parameters:
+        - description: tp
+          name: tp
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.TempParamSet'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/timeZone:
+    get:
+      description: 查询时区
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 时区
+      summary: 查询时区
+      parameters:
+        - type: integer
+          description: channel number
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            allOf:
+              - $ref: '#/definitions/api.ApiResp'
+              - type: object
+                properties:
+                  data:
+                    $ref: '#/definitions/api.Timezone'
+    post:
+      description: 配置时区
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 时区
+      summary: 配置时区
+      parameters:
+        - description: config
+          name: config
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/api.SetTimezone'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/video/keepFlv:
+    post:
+      description: >-
+        当调用playFlv接口后SDK会每15S判断该视频流是否被使用，调用方需要周期 (建议10
+        s)调用该接口保持FLV连接。超过15s没有调用keepFlv接口SDK  将关闭该视频流
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 视频
+      summary: 保持FLV连接
+      parameters:
+        - type: string
+          description: 设备IP
+          name: devIp
+          in: query
+          required: true
+        - type: string
+          description: '通道号 ,可见光0，红外1 '
+          name: ch
+          in: query
+          required: true
+        - type: string
+          description: main或者sub
+          name: stream
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/video/playFlv:
+    get:
+      description: 播放flv视频，  当调用playFlv接口后SDK会每15S判断该视频流是否被使用，如需要保持播放需要周期性调用keepFlv接口
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 视频
+      summary: 播放flv视频
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: '通道号 ,可见光0，红外1 '
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: main或者sub
+          name: stream
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/video/playRtsp:
+    get:
+      description: 播放RTSP视频
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 视频
+      summary: 播放RTSP视频
+      parameters:
+        - type: string
+          description: ip
+          name: ip
+          in: query
+          required: true
+        - type: integer
+          description: port
+          name: port
+          in: query
+          required: true
+        - type: string
+          description: username
+          name: username
+          in: query
+          required: true
+        - type: string
+          description: password
+          name: password
+          in: query
+          required: true
+        - type: integer
+          description: chNum
+          name: chNum
+          in: query
+          required: true
+        - type: string
+          description: stream
+          name: stream
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+  /dev/video/stopFlv:
+    post:
+      description: 当调用playFlv接口后如果不再使用该视频流请使用本接口停止FLV
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      tags:
+        - 视频
+      summary: 停止FLV
+      parameters:
+        - type: string
+          description: 设备IP
+          name: devIp
+          in: query
+          required: true
+        - type: string
+          description: '通道号 ,可见光0，红外1 '
+          name: ch
+          in: query
+          required: true
+        - type: string
+          description: main或者sub
+          name: stream
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/api.ApiResp'
+definitions:
+  api.AlarmConfig:
+    type: object
+    properties:
+      enable:
+        description: 使能
+        type: boolean
+      hTempThreshold:
+        description: 高温门限
+        type: number
+      lTempThreshold:
+        description: 低温门限
+        type: number
+      relaySwitch1:
+        description: "联动报警输出1\ttrue:ON, false：OFF"
+        type: boolean
+      relaySwitch2:
+        description: "联动报警输出2\ttrue:ON, false：OFF"
+        type: boolean
+      timeList:
+        description: "CapJpeg1 \t\tbool\t\t\t\t`json:\"capJpeg1\"  `\t\t\t\t\t// 联动抓拍1\nCapJpeg2 \t\tbool\t\t\t\t`json:\"capJpeg2\"  `\t\t\t\t\t// 联动抓拍2"
+        type: array
+        items:
+          $ref: '#/definitions/api.TimeCheck'
+      typeThreshold:
+        description: '告警类型 ，0:高于最高温 //1:低于最低温 //2:介于…之间 //3:范围之外'
+        type: integer
+  api.AlarmConfigs:
+    type: object
+    properties:
+      globalAlarmConfig:
+        $ref: '#/definitions/api.AlarmConfig'
+      regionAlarmConfig:
+        type: array
+        items:
+          $ref: '#/definitions/api.AlarmConfig'
+  api.AlarmConfigsSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      globalAlarmConfig:
+        $ref: '#/definitions/api.AlarmConfig'
+      password:
+        description: 登录密码
+        type: string
+      regionAlarmConfig:
+        type: array
+        items:
+          $ref: '#/definitions/api.AlarmConfig'
+      userName:
+        description: 登录用户名
+        type: string
+  api.AllTempValue:
+    type: object
+    properties:
+      areaTempValue:
+        description: 区域温度
+        $ref: '#/definitions/api.AreaTempValue'
+      globalTempValueData:
+        description: 全幅温度
+        $ref: '#/definitions/api.GlobalTempValue'
+  api.ApiResp:
+    type: object
+    properties:
+      code:
+        description: 错误码，0成功，非0失败
+        type: integer
+      data:
+        description: 具体返回结果
+        type: object
+      message:
+        description: 'example:"status bad request"'
+        type: string
+      status:
+        description: success 或 fail
+        type: string
+  api.AreaConfigSet:
+    type: object
+    properties:
+      areaConfigs:
+        type: array
+        items:
+          $ref: '#/definitions/api.AreaConfigVo'
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.AreaConfigVo:
+    type: object
+    properties:
+      cursorEnable:
+        description: 启用光标叠加
+        type: boolean
+      detectDist:
+        description: 目标距离，单位m
+        type: number
+      height:
+        description: 矩形高度，区域类型为点或线条时设置为0
+        type: integer
+      osdEnable:
+        description: 启用测温osd叠加
+        type: boolean
+      radRate:
+        description: '辐射率,范围[0,1]'
+        type: number
+      regionEnable:
+        description: 启用测温
+        type: boolean
+      type:
+        description: 区域类型 0矩形，1 点，2 线
+        type: integer
+      width:
+        description: 矩形宽度  区域类型为点条时设置为0
+        type: integer
+      x:
+        description: 矩形起点x坐标
+        type: integer
+      'y':
+        description: 矩形起点y坐标
+        type: integer
+  api.AreaTempValue:
+    type: object
+    properties:
+      tempValue:
+        type: array
+        items:
+          $ref: '#/definitions/api.TempVo'
+  api.ChanOsd:
+    type: object
+    properties:
+      timeOsd:
+        description: 时间
+        $ref: '#/definitions/api.TimeOsd'
+      titleOsd:
+        description: 标题
+        type: array
+        items:
+          $ref: '#/definitions/api.TitleOsd'
+  api.ChanOsdSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      timeOsd:
+        description: 时间
+        $ref: '#/definitions/api.TimeOsd'
+      titleOsd:
+        description: 标题
+        type: array
+        items:
+          $ref: '#/definitions/api.TitleOsd'
+      userName:
+        description: 登录用户名
+        type: string
+  api.ColorModeSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      mode:
+        description: >-
+          调色板类型 Ironbow:0
+          rainbow:1,whitehot:2,blackhot:3,globow:4,ironbowAlt1:5,ironbowAlt2:6,sepia:7,colour1:8,colour2:9,icefire:10,rain:11,redhot:12,greenhot:13,greyred:14,lava:15,instalert:16,arctic:17
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.Flip:
+    type: object
+    properties:
+      hFlip:
+        description: 是否水平翻转
+        type: boolean
+      vFlip:
+        description: 是否垂直翻转
+        type: boolean
+  api.FlipSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      hFlip:
+        description: 是否水平翻转
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+      vFlip:
+        description: 是否垂直翻转
+        type: boolean
+  api.FtpConfig:
+    type: object
+    properties:
+      enable:
+        description: FTP使能
+        type: boolean
+      ftpIp:
+        description: FTP服务器地址
+        type: string
+      ftpPort:
+        description: FTP服务端口
+        type: integer
+      ftpPwd:
+        description: FTP服务器密码
+        type: string
+      ftpUser:
+        description: FTP服务器用户
+        type: string
+  api.FuseSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      enable:
+        description: 启用 融合
+        type: boolean
+      horizOffset:
+        description: 水平偏移
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      strength:
+        description: 融合 强度，0：低 1 中 2 高
+        type: integer
+      userName:
+        description: 登录用户名
+        type: string
+      vertOffset:
+        description: 垂直偏移
+        type: integer
+  api.FuseVo:
+    type: object
+    properties:
+      enable:
+        description: 启用 融合
+        type: boolean
+      horizOffset:
+        description: 水平偏移
+        type: integer
+      strength:
+        description: 融合 强度，0：低 1 中 2 高
+        type: integer
+      vertOffset:
+        description: 垂直偏移
+        type: integer
+  api.GainModeSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      gainMode:
+        description: '增益模式  仅当增益类型为手动模式时有效 1:低增益 2:高增益'
+        type: integer
+      gainType:
+        description: '增益类型 0:自动 1:手动'
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.GainModeVo:
+    type: object
+    properties:
+      gainMode:
+        description: '增益模式  仅当增益类型为手动模式时有效 1:低增益 2:高增益'
+        type: integer
+      gainType:
+        description: '增益类型 0:自动 1:手动'
+        type: integer
+  api.GlobalTempValue:
+    type: object
+    properties:
+      tempValue:
+        $ref: '#/definitions/api.TempVo'
+  api.Ir2ViOsdSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      curEnable:
+        description: 是否开启光标显示
+        type: boolean
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      osdEnable:
+        description: OSD开关
+        type: boolean
+      paraEnable:
+        description: 是否开启测温显示
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      stripEnable:
+        description: 是否开启伪彩色条显示
+        type: boolean
+      tempEnable:
+        description: 是否开启测温显示
+        type: boolean
+      userName:
+        description: 登录用户名
+        type: string
+  api.Ir2ViOsdVo:
+    type: object
+    properties:
+      curEnable:
+        description: 是否开启光标显示
+        type: boolean
+      osdEnable:
+        description: OSD开关
+        type: boolean
+      paraEnable:
+        description: 是否开启测温显示
+        type: boolean
+      stripEnable:
+        description: 是否开启伪彩色条显示
+        type: boolean
+      tempEnable:
+        description: 是否开启测温显示
+        type: boolean
+  api.IrOsdSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      curEnable:
+        description: 是否开启游标显示
+        type: boolean
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      paraEnable:
+        description: 是否开启测温参数显示
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      stripEnable:
+        description: 是否开启伪彩显示
+        type: boolean
+      tempEnable:
+        description: 是否开启测温显示
+        type: boolean
+      userName:
+        description: 登录用户名
+        type: string
+  api.IrOsdVo:
+    type: object
+    properties:
+      curEnable:
+        description: 是否开启游标显示
+        type: boolean
+      paraEnable:
+        description: 是否开启测温参数显示
+        type: boolean
+      stripEnable:
+        description: 是否开启伪彩显示
+        type: boolean
+      tempEnable:
+        description: 是否开启测温显示
+        type: boolean
+  api.NetInfo:
+    type: object
+    properties:
+      dataPort:
+        description: 数据端口
+        type: integer
+      ip:
+        description: ip地址
+        type: string
+      mac:
+        description: mac地址
+        type: string
+      serverName:
+        description: 设备名称
+        type: string
+      webPort:
+        description: web端口
+        type: integer
+  api.NtpConfig:
+    type: object
+    properties:
+      linkEnable:
+        description: NTP使能
+        type: boolean
+      serverAddr:
+        description: NTP服务器地址，支持IP地址和域名
+        type: string
+      serverPort:
+        description: NTP服务端口
+        type: integer
+  api.PtzOp:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      operation:
+        description: >-
+          PTZ操作 左转=0,右转=1,向上=2,向下=3,光圈放大=4,光圈缩小=5,聚焦拉远=6,聚焦拉近=7,变倍+= 8,变倍-=9,
+          调用预置位= 10,设置预置位= 11,自动= 12,停止=13,
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      pointNumber:
+        description: 预置点号(1-255)
+        type: integer
+      ptzSpeed:
+        description: ptz速度1-10
+        type: integer
+      userName:
+        description: 登录用户名
+        type: string
+  api.SetFtpConfig:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      enable:
+        description: FTP使能
+        type: boolean
+      ftpIp:
+        description: FTP服务器地址
+        type: string
+      ftpPort:
+        description: FTP服务端口
+        type: integer
+      ftpPwd:
+        description: FTP服务器密码
+        type: string
+      ftpUser:
+        description: FTP服务器用户
+        type: string
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.SetNtpConfig:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      linkEnable:
+        description: NTP使能
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      serverAddr:
+        description: NTP服务器地址，支持IP地址和域名
+        type: string
+      serverPort:
+        description: NTP服务端口
+        type: integer
+      userName:
+        description: 登录用户名
+        type: string
+  api.SetTimerCap:
+    type: object
+    properties:
+      capJpgEnable:
+        description: 启动定时抓拍
+        type: boolean
+      capJpgInterval:
+        description: 抓拍时间间隔，单位（秒）
+        type: integer
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      isUploadFtp:
+        description: 是否上传ftp
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      timeList:
+        description: 时间列表
+        type: array
+        items:
+          $ref: '#/definitions/api.TimerCapTimeCheck'
+      userName:
+        description: 登录用户名
+        type: string
+  api.SetTimezone:
+    type: object
+    properties:
+      bias:
+        description: 时区（分钟）
+        type: integer
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.ShieldArea:
+    type: object
+    properties:
+      enable:
+        description: 是否启用该区域
+        type: boolean
+      height:
+        description: 区域高度
+        type: integer
+      width:
+        description: 区域宽度
+        type: integer
+      x:
+        description: x 起点X坐标
+        type: integer
+      'y':
+        description: y 起点Y坐标
+        type: integer
+  api.Shields:
+    type: object
+    properties:
+      shieldArea:
+        type: array
+        items:
+          $ref: '#/definitions/api.ShieldArea'
+  api.ShieldsSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      shieldArea:
+        type: array
+        items:
+          $ref: '#/definitions/api.ShieldArea'
+      userName:
+        description: 登录用户名
+        type: string
+  api.SmartAnalysisCordonParam:
+    type: object
+    properties:
+      line:
+        description: 警戒线配置，最大支持4条警戒线
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisLineParam'
+  api.SmartAnalysisCordonParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      line:
+        description: 警戒线配置，最大支持4条警戒线
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisLineParam'
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.SmartAnalysisEnableSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      enable:
+        description: 是否启用智能分析
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.SmartAnalysisGoodsParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      region:
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisRegion'
+      userName:
+        description: 登录用户名
+        type: string
+  api.SmartAnalysisLineParam:
+    type: object
+    properties:
+      direction:
+        description: '0: 向左(B->A线方向  1: 向右(A->B) 2: 双向(A<->B)'
+        type: integer
+      endPoint:
+        description: 线终止坐标点)  //
+        $ref: '#/definitions/api.SmartAnalysisPoint'
+      startPoint:
+        description: 线起始坐标点
+        $ref: '#/definitions/api.SmartAnalysisPoint'
+  api.SmartAnalysisPoint:
+    type: object
+    properties:
+      x:
+        description: '坐标点,  x坐标'
+        type: integer
+      'y':
+        description: '坐标点,  y坐标'
+        type: integer
+  api.SmartAnalysisRegion:
+    type: object
+    properties:
+      pointNum:
+        description: 多边形，最多15边形15个点
+        type: integer
+      reg:
+        description: 多边形，各个点位置
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisPoint'
+  api.SmartAnalysisRegionParam:
+    type: object
+    properties:
+      region:
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisRegion'
+  api.SmartAnalysisRegionParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      direction:
+        description: '"方向参数，in进入，out出"'
+        type: string
+      password:
+        description: 登录密码
+        type: string
+      region:
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisRegion'
+      userName:
+        description: 登录用户名
+        type: string
+  api.SmartAnalysisShieldConfig:
+    type: object
+    properties:
+      shieldReg:
+        description: 区域屏蔽，最大支持4个区域
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisRegion'
+  api.SmartAnalysisShieldConfigSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      shieldReg:
+        description: 区域屏蔽，最大支持4个区域
+        type: array
+        items:
+          $ref: '#/definitions/api.SmartAnalysisRegion'
+      userName:
+        description: 登录用户名
+        type: string
+  api.TempOsd:
+    type: object
+    properties:
+      averageTempEnable:
+        description: 平均温温度叠加
+        type: boolean
+      highTempEnable:
+        description: 最高温温度叠加
+        type: boolean
+      lowTempEnable:
+        description: 最低温温度叠加
+        type: boolean
+  api.TempOsdSet:
+    type: object
+    properties:
+      averageTempEnable:
+        description: 平均温温度叠加
+        type: boolean
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      highTempEnable:
+        description: 最高温温度叠加
+        type: boolean
+      lowTempEnable:
+        description: 最低温温度叠加
+        type: boolean
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
+  api.TempParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      detectDist:
+        description: 检测距离，单位m
+        type: number
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      envTemp:
+        description: 环境温度，单位℃
+        type: number
+      humidity:
+        description: '湿度,范围[0,100],单位%'
+        type: number
+      password:
+        description: 登录密码
+        type: string
+      radRate:
+        description: '辐射率,范围[0,1]'
+        type: number
+      userName:
+        description: 登录用户名
+        type: string
+  api.TempParamVo:
+    type: object
+    properties:
+      detectDist:
+        description: 检测距离，单位m
+        type: number
+      envTemp:
+        description: 环境温度，单位℃
+        type: number
+      humidity:
+        description: '湿度,范围[0,100],单位%'
+        type: number
+      radRate:
+        description: '辐射率,范围[0,1]'
+        type: number
+  api.TempVo:
+    type: object
+    properties:
+      avgTemp:
+        description: 平均温值
+        type: number
+      maxTemp:
+        description: 最高温值
+        type: number
+      minTemp:
+        description: 最低温值
+        type: number
+  api.TimeCheck:
+    type: object
+    properties:
+      day:
+        description: 日期   0星期一  1星期二  2星期三 3星期四 4星期五 5星期六 6星期天 7星期一-星期五 8星期六-星期天 9每天 10关闭
+        type: integer
+      startHour:
+        description: 开始小时
+        type: integer
+      stopHour:
+        description: 停止小时
+        type: integer
+  api.TimeOsd:
+    type: object
+    properties:
+      show:
+        description: 是否显示
+        type: boolean
+      x:
+        description: 显示坐标X
+        type: integer
+      'y':
+        description: 显示坐标Y
+        type: integer
+  api.TimeParam:
+    type: object
+    properties:
+      day:
+        description: 日
+        type: integer
+      hour:
+        description: 小时0-23
+        type: integer
+      minute:
+        description: 分钟
+        type: integer
+      month:
+        description: 月
+        type: integer
+      second:
+        description: 秒
+        type: integer
+      year:
+        description: 年
+        type: integer
+  api.TimeParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      day:
+        description: 日
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      hour:
+        description: 小时0-23
+        type: integer
+      minute:
+        description: 分钟
+        type: integer
+      month:
+        description: 月
+        type: integer
+      password:
+        description: 登录密码
+        type: string
+      second:
+        description: 秒
+        type: integer
+      userName:
+        description: 登录用户名
+        type: string
+      year:
+        description: 年
+        type: integer
+  api.TimerCap:
+    type: object
+    properties:
+      capJpgEnable:
+        description: 启动定时抓拍
+        type: boolean
+      capJpgInterval:
+        description: 抓拍时间间隔，单位（秒）
+        type: integer
+      isUploadFtp:
+        description: 是否上传ftp
+        type: boolean
+      timeList:
+        description: 时间列表
+        type: array
+        items:
+          $ref: '#/definitions/api.TimerCapTimeCheck'
+  api.TimerCapTimeCheck:
+    type: object
+    properties:
+      day:
+        description: '周  0:周一  1:周二  2:周三 3:周四 4:周五 5:周六 6:周日 7:周一至周五 8:周六至周日 9:每天 10:关闭'
+        type: integer
+      startHour:
+        description: 起始时间（时）
+        type: integer
+      startMinute:
+        description: 起始时间（分）
+        type: integer
+      stopHour:
+        description: 结束时间（时）
+        type: integer
+      stopMinute:
+        description: 结束时间（分）
+        type: integer
+  api.Timezone:
+    type: object
+    properties:
+      bias:
+        description: 时区（分钟）
+        type: integer
+  api.TitleOsd:
+    type: object
+    properties:
+      show:
+        description: 是否显示
+        type: boolean
+      text:
+        description: 显示字符
+        type: string
+      x:
+        description: 显示坐标X
+        type: integer
+      'y':
+        description: 显示坐标Y
+        type: integer
+  api.UploadServerVo:
+    type: object
+    properties:
+      serverApi:
+        description: 服务器接口地址
+        type: string
+  api.WholeParamSet:
+    type: object
+    properties:
+      chNum:
+        description: 通道号 可见光：0， 红外：1
+        type: integer
+      devIp:
+        description: 设备IP
+        type: string
+      devPort:
+        description: 设备端口
+        type: integer
+      gwAddr:
+        description: 网关地址
+        type: string
+      ipAddress:
+        description: 设备ip 地址
+        type: string
+      netMask:
+        description: 子网掩码
+        type: string
+      password:
+        description: 登录密码
+        type: string
+      userName:
+        description: 登录用户名
+        type: string
